@@ -24,6 +24,8 @@ window.addEventListener("load", timerInit)
 
 function timerInit() {
 
+    console.log("hello");
+
     helpText = document.getElementsByClassName('helpText');
     panelText = document.getElementsByClassName('panelText');
 

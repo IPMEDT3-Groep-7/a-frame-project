@@ -7,6 +7,7 @@
   <script src="https://unpkg.com/aframe-environment-component@1.3.3/dist/aframe-environment-component.min.js"></script>
 
   <script type="text/javascript" src="js/main.js"></script>
+  <script type="text/javascript" src="js/kitchentimer.js"></script>
 
   <title>Proof of concept | IPMEDT3</title>
 </head>
@@ -79,13 +80,13 @@
     ></a-entity>
 
     <a-entity hourGlass position="0 1 -2">
-      <a-cylinder src="./wood.jpg" height="1" position="-0.25 0 0" radius="0.05" ></a-cylinder>
-      <a-cylinder src="./wood.jpg" height="1" position="0.25 0 0" radius="0.05" ></a-cylinder>
+      <a-cylinder src="./assets/models/wood.jpg" height="1" position="-0.25 0 0" radius="0.05" ></a-cylinder>
+      <a-cylinder src="./assets/models/wood.jpg" height="1" position="0.25 0 0" radius="0.05" ></a-cylinder>
 
-      <a-cylinder src="./wood.jpg" height="0.05" position="0 0.5 0" radius="0.3" ></a-cylinder>
-      <a-cone class="js--clickable" color="#a7c7cb" height="0.5" position="0 0.25 0" radius-top="0.01" radius-bottom="0.2" rotation="0 0 180" ></a-cone>
-      <a-cone class="js--clickable" src="./sand.jpg" height="0.5" position="0 -0.25 0" radius-bottom="0.2" radius-top="0.01" ></a-cone>
-      <a-cylinder src="./wood.jpg" height="0.05" position="0 -0.5 0" radius="0.3" ></a-cylinder>
+      <a-cylinder src="./assets/models/wood.jpg" height="0.05" position="0 0.5 0" radius="0.3" ></a-cylinder>
+      <a-cone class="js--interact" color="#a7c7cb" height="0.5" position="0 0.25 0" radius-top="0.01" radius-bottom="0.2" rotation="0 0 180" ></a-cone>
+      <a-cone class="js--interact" src="./assets/models/sand.jpg" height="0.5" position="0 -0.25 0" radius-bottom="0.2" radius-top="0.01" ></a-cone>
+      <a-cylinder src="./assets/models/wood.jpg" height="0.05" position="0 -0.5 0" radius="0.3" ></a-cylinder>
     </a-entity>
 
     <!-- Furnaces -->
