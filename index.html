@@ -3,17 +3,49 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>A-frame VR Game | Groep 7</title>
   <script src="https://aframe.io/releases/1.5.0/aframe.min.js"></script>
+  <script src="https://unpkg.com/aframe-environment-component@1.3.3/dist/aframe-environment-component.min.js"></script>
+
+  <script type="text/javascript" src="js/main.js"></script>
+
+  <title>Proof of concept | IPMEDT3</title>
 </head>
 <body>
-  <a-scene>
-    <!-- Twans comment -->
-    <a-box position="-1 0.5 -3" rotation="0 45 0" color="#4CC3D9"></a-box>
-    <a-sphere position="0 1.25 -5" radius="1.25" color="#EF2D5E"></a-sphere>
-    <a-cylinder position="1 0.75 -3" radius="0.5" height="1.5" color="#FFC65D"></a-cylinder>
-    <a-plane position="0 0 -4" rotation="-90 0 0" width="8" height="4" color="#7BC8A4"></a-plane>
-    <a-sky color="#70dbff"></a-sky>
+  <a-scene id="js--scene">
+    <!-- Assets -->
+    <a-assets>
+      <a-asset-item id="pan-obj" src="assets/Saus Pan.obj"></a-asset-item>
+      <a-asset-item id="pan-mtl" src="assets/Saus Pan.mtl"></a-asset-item>
+    </a-assets>
+
+    <!-- Camera -->
+    <a-camera id="js--camera">
+      <a-entity
+        animation__click="property: scale; startEvents: click; easing: easeInCubic; dur: 150; from: 0.1 0.1 0.1; to: 1 1 1"
+        animation__fusing="property: scale; startEvents: fusing; easing: easeInCubic; dur: 2000; from: 1 1 1; to: 0.1 0.1 0.1"
+        animation="property: scale; startEvents: mouseleave; easing: easeInCubic; dur: 500; to: 1 1 1"
+        cursor = "fuse: true; fuseTimeout: 2000"
+        material = "color: black; shader: flat"
+        geometry = "primitive: ring; radiusInner: 0.007; radiusOuter: 0.01"
+        position = "0 0 -0.5"
+        raycaster = "objects: .js--interact"
+      ></a-entity>
+    </a-camera>
+
+    <!-- Object to pickup -->
+    <a-entity id="parentObject"  class="js--pickup" position="2 1.5 -3"> 
+      <a-obj-model class="js--interact" src="#pan-obj" mtl="#pan-mtl" scale="0.02 0.02 0.02"></a-obj-model>
+    </a-entity>
+
+    <!-- Placeholder boxes -->
+    <a-cylinder class="js--placeholder js--interact" position="0 1 -3.5" height=".01" radius=".5" color="grey"></a-cylinder>
+    <a-cylinder class="js--placeholder js--interact" position="2 1 -2.5" height=".01" radius=".5" color="grey"></a-cylinder>
+    <a-cylinder class="js--placeholder js--interact" position="-2 1 -2.5" height=".01" radius=".5" color="grey"></a-cylinder>
+
+    <!-- Ground & sky -->
+    <a-entity environment="preset: forest"></a-entity>
+    <!-- <a-plane position="0 -4 0" height="100" width="100" rotation="-90 0 0" color="#26af3f"></a-plane>
+    <a-sky color="#00cbff"></a-sky> -->
   </a-scene>
 </body>
 </html>
