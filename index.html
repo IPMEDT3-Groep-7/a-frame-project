@@ -30,6 +30,36 @@
         position = "0 0 -0.5"
         raycaster = "objects: .js--interact"
       ></a-entity>
+
+      <a-entity id="timerPanel" position="1.27 0.5 -1">
+
+        <a-plane position="0 0.1 0" shader="flat" color="#000000" width="1" height="0.3"></a-plane>
+
+        <a-entity id="" position="-0.49 0.19 0">
+            <a-entity
+                class="panelText"
+                text="align: left; anchor: left; color: white; value: Kitchen timer: Potatoes;"
+                scale="1.8 1.8 1.8"
+            ></a-entity>
+            <a-entity
+                class="panelText"
+                text="align: left; anchor: left; color: white; value:)));"
+                scale="1 1 1"
+                position="0 -0.1 0"
+            ></a-entity>
+            <a-entity
+                class="panelText"
+                line="start: 0.1 -0.1 0.001; end: 0.1 -0.1 0.001; color: rgb(255, 255, 0);"
+            ></a-entity>
+            <a-entity
+                class="panelText"
+                text="align: left; anchor: left; color: white; value: Potatoes ready in --:--;"
+                scale="1 1 1"
+                position="0 -0.2 0"
+            ></a-entity>
+        </a-entity>
+
+      </a-entity>
     </a-camera>
 
     <!-- Room -->
@@ -38,6 +68,24 @@
     <!-- Pots & pans (pickup) -->
     <a-entity id="parentObject"  class="js--pickup" position="2 1.5 -3"> 
       <a-obj-model class="js--interact" src="#pan-obj" mtl="#pan-mtl" scale="0.02 0.02 0.02"></a-obj-model>
+    </a-entity>
+
+    <!-- hourglass -->
+
+    <a-entity class="helpText"
+      text="color: white; value: Click to\nstart timer; align: center; anchor: center;"
+      scale="5 5 5"
+      position="0 2 -2"
+    ></a-entity>
+
+    <a-entity hourGlass position="0 1 -2">
+      <a-cylinder src="./wood.jpg" height="1" position="-0.25 0 0" radius="0.05" ></a-cylinder>
+      <a-cylinder src="./wood.jpg" height="1" position="0.25 0 0" radius="0.05" ></a-cylinder>
+
+      <a-cylinder src="./wood.jpg" height="0.05" position="0 0.5 0" radius="0.3" ></a-cylinder>
+      <a-cone class="js--clickable" color="#a7c7cb" height="0.5" position="0 0.25 0" radius-top="0.01" radius-bottom="0.2" rotation="0 0 180" ></a-cone>
+      <a-cone class="js--clickable" src="./sand.jpg" height="0.5" position="0 -0.25 0" radius-bottom="0.2" radius-top="0.01" ></a-cone>
+      <a-cylinder src="./wood.jpg" height="0.05" position="0 -0.5 0" radius="0.3" ></a-cylinder>
     </a-entity>
 
     <!-- Furnaces -->
