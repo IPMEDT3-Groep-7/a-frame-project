@@ -1,4 +1,4 @@
-window.onload = () =>{
+window.onload = () => {
   const camera = document.getElementById('js--camera');
   const placeholders = document.getElementsByClassName('js--placeholder');
 
