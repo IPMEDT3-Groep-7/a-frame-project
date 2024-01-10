@@ -24,7 +24,7 @@ window.addEventListener("load", timerInit)
 
 function timerInit() {
 
-    console.log("hello");
+    // console.log("hello");
 
     helpText = document.getElementsByClassName('helpText');
     panelText = document.getElementsByClassName('panelText');
@@ -129,7 +129,7 @@ function rotateHourglass(hourglass) {
     if (timerPaused === undefined) {
         helpText[0].setAttribute('text', 'value', "Click again\nto pause")
     } else {
-        helpText[0].setAttribute('text', 'value', "")
+        helpText[0].setAttribute('text', 'value', "Click to\nstart timer")
     }
 
     let rotation = hourglass.getAttribute('rotation').x;
