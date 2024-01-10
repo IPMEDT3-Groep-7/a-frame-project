@@ -28,7 +28,7 @@ window.onload = () => {
       if (hold == "box"){
         var originalObject = document.getElementById('js--hold');
         var cloneObject = originalObject.cloneNode(true);
-        cloneObject.setAttribute("position", {x: this.getAttribute('position').x, y:"1", z: this.getAttribute('position').z});
+        cloneObject.setAttribute("position", {x: this.getAttribute('position').x, y:"1.1", z: this.getAttribute('position').z});
         cloneObject.setAttribute('id', "free");
         scene.appendChild(cloneObject);
         originalObject.parentNode.removeChild(originalObject);
