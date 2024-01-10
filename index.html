@@ -4,6 +4,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <script src="https://aframe.io/releases/1.5.0/aframe.min.js"></script>
+  <script src="https://unpkg.com/aframe-environment-component@1.3.3/dist/aframe-environment-component.min.js"></script>
+
   <script type="text/javascript" src="js/main.js"></script>
 
   <title>Proof of concept | IPMEDT3</title>
@@ -31,7 +33,7 @@
     </a-camera>
 
     <!-- Object to pickup -->
-    <a-entity id="parentObject"  class="js--pickup" position="0 1.5 -3"> 
+    <a-entity id="parentObject"  class="js--pickup" position="2 1.5 -3"> 
       <a-obj-model class="js--interact" src="#pan-obj" mtl="#pan-mtl" scale="0.02 0.02 0.02"></a-obj-model>
     </a-entity>
 
@@ -41,8 +43,9 @@
     <a-cylinder class="js--placeholder js--interact" position="-2 1 -2.5" height=".01" radius=".5" color="grey"></a-cylinder>
 
     <!-- Ground & sky -->
-    <a-plane position="0 -4 0" height="100" width="100" rotation="-90 0 0" color="#26af3f"></a-plane>
-    <a-sky color="#00cbff"></a-sky>
+    <a-entity environment="preset: forest"></a-entity>
+    <!-- <a-plane position="0 -4 0" height="100" width="100" rotation="-90 0 0" color="#26af3f"></a-plane>
+    <a-sky color="#00cbff"></a-sky> -->
   </a-scene>
 </body>
 </html>
