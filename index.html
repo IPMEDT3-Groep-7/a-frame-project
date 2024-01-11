@@ -4,7 +4,13 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <script src="https://aframe.io/releases/1.5.0/aframe.min.js"></script>
+
+  <!-- A-frame environment -->
   <script src="https://unpkg.com/aframe-environment-component@1.3.3/dist/aframe-environment-component.min.js"></script>
+
+  <!-- A-frame smoothlocomotion -->
+  <script src="https://unpkg.com/aframe-locomotion@0.2.0/dist/aframe-locomotion.umd.min.js"></script>
+
   <script type="text/javascript" src="js/main.js"></script>
   <script type="text/javascript" src="js/kitchentimer.js"></script>
   <script type="text/javascript" src="js/pickup.js"></script>
@@ -19,19 +25,32 @@
       <a-asset-item id="pan-mtl" src="assets/models/Saus-Pan.mtl"></a-asset-item>
     </a-assets>
 
-    <!-- Camera -->
-    <a-camera id="js--camera" fov="50">
-      <a-entity
-        animation__click="property: scale; startEvents: click; easing: easeInCubic; dur: 150; from: 0.1 0.1 0.1; to: 1 1 1"
-        animation__fusing="property: scale; startEvents: fusing; easing: easeInCubic; dur: 2000; from: 1 1 1; to: 0.1 0.1 0.1"
-        animation="property: scale; startEvents: mouseleave; easing: easeInCubic; dur: 500; to: 1 1 1"
-        cursor = "fuse: true; fuseTimeout: 2000"
-        material = "color: black; shader: flat"
-        geometry = "primitive: ring; radiusInner: 0.007; radiusOuter: 0.01"
-        position = "0 0 -0.5"
-        raycaster = "objects: .js--interact"
-      ></a-entity>
-    </a-camera>
+    <!-- Camera rig -->
+    <a-entity id="rig">
+      <!-- Camera -->
+      <a-camera id="js--camera" fov="50">
+        <!-- Cursor -->
+        <a-entity
+          animation__click="property: scale; startEvents: click; easing: easeInCubic; dur: 150; from: 0.1 0.1 0.1; to: 1 1 1"
+          animation__fusing="property: scale; startEvents: fusing; easing: easeInCubic; dur: 2000; from: 1 1 1; to: 0.1 0.1 0.1"
+          animation="property: scale; startEvents: mouseleave; easing: easeInCubic; dur: 500; to: 1 1 1"
+          cursor = "fuse: true; fuseTimeout: 2000"
+          material = "color: black; shader: flat"
+          geometry = "primitive: ring; radiusInner: 0.007; radiusOuter: 0.01"
+          position = "0 0 -0.5"
+          raycaster = "objects: .js--interact"
+        ></a-entity>
+      </a-camera>
+      <!-- Hands -->
+      <a-entity 
+        hand-controls="hand: left"
+        smooth-locomotion="target: #rig; reference: #js--camera">
+      </a-entity>
+      <a-entity 
+        hand-controls="hand: right"
+        snap-turn="target: #rig; reference: #js--camera">
+      </a-entity>
+    </a-entity>
 
     <!-- Room -->
     <!-- (walls) -->
