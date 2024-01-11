@@ -1,0 +1,37 @@
+{
+  "gerechten": [
+    {
+      "gerecht": "A.V.G.",
+      "ingredienten": [
+        "Aardappelen",
+        "Snijbonen",
+        "Worstjes"
+      ],
+      "stappen": [
+        "Aardappels schoonmaken",
+        "Snijbonen schoonmaken",
+        "Aardappels & snijbonen snijden",
+        "Aardappels & snijbonen koken",
+        "Worstjes bakken"
+      ]
+    },
+    {
+      "gerecht": "Kip wraps",
+      "ingredienten": [
+        "Tortilla wraps",
+        "Krokante kip stukjes",
+        "Ijsbergsla",
+        "Komkommer",
+        "Saus"
+      ],
+      "stappen": [
+        "Sla schoonmaken",
+        "Sla & komkommer snijden",
+        "Krokante kip bakken",
+        "Ingredienten op wraps leggen",
+        "Saus op de wraps doen",
+        "Wraps oprollen"
+      ]
+    }
+  ]
+}
