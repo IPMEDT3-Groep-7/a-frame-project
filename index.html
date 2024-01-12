@@ -11,7 +11,7 @@
   <!-- A-frame smoothlocomotion -->
   <script src="https://unpkg.com/aframe-locomotion@0.2.0/dist/aframe-locomotion.umd.min.js"></script>
 
-  <script type="text/javascript" src="js/main.js"></script>
+  <!-- <script type="text/javascript" src="js/main.js"></script> -->
   <script type="text/javascript" src="js/kitchentimer.js"></script>
   <script type="text/javascript" src="js/pickup.js"></script>
 
@@ -21,8 +21,14 @@
   <a-scene id="js--scene">
     <!-- Assets -->
     <a-assets>
-      <a-asset-item id="pan-obj" src="assets/models/Saus-Pan.obj"></a-asset-item>
-      <a-asset-item id="pan-mtl" src="assets/models/Saus-Pan.mtl"></a-asset-item>
+      <a-asset-item id="sausPan-obj" src="assets/models/Saus-Pan.obj"></a-asset-item>
+      <a-asset-item id="sausPan-mtl" src="assets/models/Saus-Pan.mtl"></a-asset-item>
+      <a-asset-item id="bigPan-obj" src="assets/models/bigPan.obj"></a-asset-item>
+      <a-asset-item id="bigPan-mtl" src="assets/models/bigPan.mtl"></a-asset-item>
+      <a-asset-item id="bigWaterPan-obj" src="assets/models/bigWaterPan.obj"></a-asset-item>
+      <a-asset-item id="bigWaterPan-mtl" src="assets/models/bigWaterPan.mtl"></a-asset-item>
+      <a-asset-item id="meatPan-obj" src="assets/models/meatPan.obj"></a-asset-item>
+      <a-asset-item id="meatPan-mtl" src="assets/models/meatPan.mtl"></a-asset-item>
     </a-assets>
 
     <!-- Camera rig -->
@@ -74,8 +80,14 @@
     <a-box position="0 1.05 -3.5" height=".1" width="9" color="#ad7c00"></a-box>
 
     <!-- Pots & pans (pickup) -->
-    <a-entity id="parentObject"  class="js--pickup" position="2 1.1 -3.5"> 
-      <a-obj-model class="js--interact" src="#pan-obj" mtl="#pan-mtl" scale="0.015 0.015 0.015"></a-obj-model>
+    <a-entity id="parentObject"  class="js--pickup" position="3.4 1.1 -4.1" rotation="0 135 0"> 
+      <a-obj-model class="js--interact" src="#sausPan-obj" mtl="#sausPan-mtl" scale="0.015 0.015 0.015"></a-obj-model>
+    </a-entity>
+    <a-entity id="parentObject"  class="js--pickup" position="4 1.1 -4" rotation="0 45 0"> 
+      <a-obj-model class="js--interact" src="#bigPan-obj" mtl="#bigPan-mtl" scale="2.2 2.2 2.2"></a-obj-model>
+    </a-entity>
+    <a-entity id="parentObject"  class="js--pickup" position="3 1.11 -3.5"> 
+      <a-obj-model class="js--interact" src="#meatPan-obj" mtl="#meatPan-mtl" scale=".3 .3 .3"></a-obj-model>
     </a-entity>
 
     <!-- Timer -->
