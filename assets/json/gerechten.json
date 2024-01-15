@@ -7,31 +7,18 @@
         "Snijbonen",
         "Worstjes"
       ],
-      "stappen": [
-        "Aardappels schoonmaken",
-        "Snijbonen schoonmaken",
-        "Aardappels & snijbonen snijden",
-        "Aardappels & snijbonen koken",
-        "Worstjes bakken"
-      ]
-    },
-    {
-      "gerecht": "Kip wraps",
-      "ingredienten": [
-        "Tortilla wraps",
-        "Krokante kip stukjes",
-        "Ijsbergsla",
-        "Komkommer",
-        "Saus"
-      ],
-      "stappen": [
-        "Sla schoonmaken",
-        "Sla & komkommer snijden",
-        "Krokante kip bakken",
-        "Ingredienten op wraps leggen",
-        "Saus op de wraps doen",
-        "Wraps oprollen"
-      ]
+      "stappen": {
+        "Aardappels schoonmaken": 
+          "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+        "Snijbonen schoonmaken": 
+          "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+        "Aardappels & snijbonen snijden": 
+          "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+        "Aardappels & snijbonen koken": 
+          "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+        "Worstjes bakken": 
+          "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
+      } 
     }
   ]
 }
