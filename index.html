@@ -39,6 +39,8 @@
     <a-entity id="rig" position="0 1.6 0">
       <!-- Camera -->
       <a-camera id="js--camera" fov="50">
+        <!-- Panel (text) -->
+        <a-plane id="textPanel" position="4.49 2 -1.5" rotation="0 270 0" scale="2 1.5 1.5" color="#000000"></a-plane>
         <!-- Cursor -->
         <a-entity
           animation__click="property: scale; startEvents: click; easing: easeInCubic; dur: 150; from: 0.1 0.1 0.1; to: 1 1 1"
@@ -159,6 +161,8 @@
     <a-cylinder class="js--placeholder js--interact" position=".5 1.12 -3.4" height=".01" radius=".35" color="grey"></a-cylinder>
     <a-cylinder class="js--placeholder js--interact" position="-.5 1.12 -3.4" height=".01" radius=".35" color="grey"></a-cylinder>
     <a-cylinder class="js--placeholder js--interact" position="0 1.12 -4" height=".01" radius=".35" color="grey"></a-cylinder>
+
+    <a-cylinder id="waterKraan" class="js--placeholder js--interact" position="-2 1.12 -4" height=".01" radius=".35" color="grey"></a-cylinder>
 
     <!-- Environment -->
     <a-entity environment="preset: forest; skyColor: #FFF"></a-entity>
