@@ -84,6 +84,10 @@
     <a-box position="0 1.05 -4" height=".1" width="9" color="#ad7c00"></a-box>
     <a-box position="0 .5 -3.5" height="1" width="9"></a-box>
     <a-box position="0 1.05 -3.5" height=".1" width="9" color="#ad7c00"></a-box>
+    <a-box position="4 .5 0" rotation="0 90 0" height="1" width="9"></a-box>
+    <a-box position="4 1.05 0" rotation="0 90 0" height=".1" width="9" color="#ad7c00"></a-box>
+    <a-box position="3.5 .5 0" rotation="0 90 0" height="1" width="9"></a-box>
+    <a-box position="3.5 1.05 0" rotation="0 90 0" height=".1" width="9" color="#ad7c00"></a-box>
 
     <!-- Pots & pans (pickup) -->
     <a-entity id="parentObject"  class="js--pickup" position="3.4 1.1 -4.1" rotation="0 135 0"> 
@@ -162,7 +166,11 @@
     <a-cylinder class="js--placeholder js--interact" position="-.5 1.12 -3.4" height=".01" radius=".35" color="grey"></a-cylinder>
     <a-cylinder class="js--placeholder js--interact" position="0 1.12 -4" height=".01" radius=".35" color="grey"></a-cylinder>
 
-    <a-cylinder id="waterKraan" class="js--placeholder js--interact" position="-2 1.12 -4" height=".01" radius=".35" color="grey"></a-cylinder>
+    <!-- Faucet -->
+    <a-box position="4 1.11 -1" rotation="0 90 0" height=".02" width="1.5" color="#adadad"></a-box>
+    <a-box position="3.6 1.11 -1" rotation="0 90 0" height=".02" width="1.5" color="#adadad"></a-box>
+    <a-box position="3.7 1.111 -1" rotation="0 90 0" height=".02" width="1.4" color="#3acdff"></a-box>
+    <a-cylinder id="waterKraan" class="js--placeholder js--interact" position="3.7 1.12 -1" height=".01" radius=".35" color="#00bfff"></a-cylinder>
 
     <!-- Environment -->
     <a-entity environment="preset: forest; skyColor: #FFF"></a-entity>
