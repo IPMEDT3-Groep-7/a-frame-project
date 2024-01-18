@@ -14,6 +14,7 @@
   <!-- <script type="text/javascript" src="js/main.js"></script> -->
   <script type="text/javascript" src="js/kitchentimer.js"></script>
   <script type="text/javascript" src="js/pickup.js"></script>
+  <script type="text/javascript" src="js/cooking.js"></script>
 
   <title>Proof of concept | IPMEDT3</title>
 </head>
@@ -33,6 +34,8 @@
       <a-asset-item id="bean-mtl" src="assets/models/bean.mtl"></a-asset-item>
       <a-asset-item id="potato-obj" src="assets/models/potato.obj"></a-asset-item>
       <a-asset-item id="potato-mtl" src="assets/models/potato.mtl"></a-asset-item>
+      <a-asset-item id="tap2-obj" src="assets/models/tap2.obj"></a-asset-item>
+      <a-asset-item id="tap2-mtl" src="assets/models/tap2.mtl"></a-asset-item>
     </a-assets>
 
     <!-- Camera rig -->
@@ -47,7 +50,7 @@
           animation__fusing="property: scale; startEvents: fusing; easing: easeInCubic; dur: 2000; from: 1 1 1; to: 0.1 0.1 0.1"
           animation="property: scale; startEvents: mouseleave; easing: easeInCubic; dur: 500; to: 1 1 1"
           cursor = "fuse: true; fuseTimeout: 2000"
-          material = "color: black; shader: flat"
+          material = "color: white; shader: flat"
           geometry = "primitive: ring; radiusInner: 0.003; radiusOuter: 0.005"
           position = "0 0 -0.5"
           raycaster = "objects: .js--interact"
@@ -90,14 +93,14 @@
     <a-box position="3.5 1.05 0" rotation="0 90 0" height=".1" width="9" color="#ad7c00"></a-box>
 
     <!-- Pots & pans (pickup) -->
-    <a-entity id="parentObject"  class="js--pickup" position="3.4 1.1 -4.1" rotation="0 135 0"> 
+    <a-entity id="parentObject"  class="js--pickup" position="3.4 1.1 -4.1" rotation="0 135 0" data-stove="" data-water="" data-heat=""> 
       <a-obj-model class="js--interact" src="#sausPan-obj" mtl="#sausPan-mtl" scale="0.015 0.015 0.015"></a-obj-model>
     </a-entity>
-    <a-entity id="parentObject"  class="js--pickup" position="4 1.1 -4" rotation="0 45 0"> 
+    <a-entity id="parentObject"  class="js--pickup" position="4 1.1 -4" rotation="0 45 0" data-stove="" data-water="" data-heat=""> 
       <a-obj-model class="js--interact" src="#bigPan-obj" mtl="#bigPan-mtl" scale="2.2 2.2 2.2"></a-obj-model>
     </a-entity>
-    <a-entity id="parentObject"  class="js--pickup" position="3 1.11 -3.5"> 
-      <a-obj-model class="js--interact" src="#meatPan-obj" mtl="#meatPan-mtl" scale=".3 .3 .3"></a-obj-model>
+    <a-entity id="parentObject"  class="js--pickup" position="3 1.11 -3.5" data-stove="" data-water="" data-heat=""> 
+      <a-obj-model class="js--interact" src="#meatPan-obj" mtl="#meatPan-mtl" scale="2.2 2.2 2.2"></a-obj-model>
     </a-entity>
 
     <!-- Food (pickup) -->
@@ -159,18 +162,25 @@
     <a-box position="0 1.11 -4" height=".02" width="2" color="#adadad"></a-box>
     <a-box position="0 1.11 -3.5" height=".02" width="2" color="#adadad"></a-box>
     <a-box position="0 1.06 -3.47" height=".12" width="2" color="#adadad"></a-box>
-    <a-cylinder class="js--stove1 js--interact" position="0 1.06 -2.99" rotation="90 0 0" height=".1" radius=".04" color="#000"></a-cylinder>
-    <a-cylinder class="js--stove2 js--interact" position=".5 1.06 -2.99" rotation="90 0 0" height=".1" radius=".04" color="#000"></a-cylinder>
-    <a-cylinder class="js--stove3 js--interact" position="-.5 1.06 -2.99" rotation="90 0 0" height=".1" radius=".04" color="#000"></a-cylinder>
-    <a-cylinder class="js--placeholder js--interact" position=".5 1.12 -3.4" height=".01" radius=".35" color="grey"></a-cylinder>
-    <a-cylinder class="js--placeholder js--interact" position="-.5 1.12 -3.4" height=".01" radius=".35" color="grey"></a-cylinder>
-    <a-cylinder class="js--placeholder js--interact" position="0 1.12 -4" height=".01" radius=".35" color="grey"></a-cylinder>
+    <!-- Furnace buttons -->
+    <a-cylinder id="js--heat1" class="js--heat js--interact" position=".5 1.06 -2.99" rotation="90 0 0" height=".1" radius=".04" color="#000"></a-cylinder>
+    <a-cylinder id="js--heat2" class="js--heat js--interact" position="-.5 1.06 -2.99" rotation="90 0 0" height=".1" radius=".04" color="#000"></a-cylinder>
+    <a-cylinder id="js--heat3" class="js--heat js--interact" position="0 1.06 -2.99" rotation="90 0 0" height=".1" radius=".04" color="#000"></a-cylinder>
+    <!-- Furnace pits -->
+    <a-cylinder id="js--stove1" class="js--stove js--placeholder js--interact" position=".5 1.12 -3.4" height=".01" radius=".35" color="grey"></a-cylinder>
+    <a-cylinder id="js--stove2" class="js--stove js--placeholder js--interact" position="-.5 1.12 -3.4" height=".01" radius=".35" color="grey"></a-cylinder>
+    <a-cylinder id="js--stove3" class="js--stove js--placeholder js--interact" position="0 1.12 -4" height=".01" radius=".35" color="grey"></a-cylinder>
+
+     <!-- Water tap -->
+    <a-entity id="parentObject"> 
+      <a-obj-model class="js--interact" src="#tap2-obj" mtl="#tap2-mtl" position="4.322 1.12 -0.75" rotation="0 270 0" scale="0.2 0.2 0.2"></a-obj-model>
+    </a-entity>
 
     <!-- Faucet -->
     <a-box position="4 1.11 -1" rotation="0 90 0" height=".02" width="1.5" color="#adadad"></a-box>
     <a-box position="3.6 1.11 -1" rotation="0 90 0" height=".02" width="1.5" color="#adadad"></a-box>
     <a-box position="3.7 1.111 -1" rotation="0 90 0" height=".02" width="1.4" color="#3acdff"></a-box>
-    <a-cylinder id="waterKraan" class="js--placeholder js--interact" position="3.7 1.12 -1" height=".01" radius=".35" color="#00bfff"></a-cylinder>
+    <a-cylinder id="js--water" class="js--placeholder js--interact" position="3.7 1.12 -1" height=".01" radius=".35" color="#00bfff"></a-cylinder>
 
     <!-- Environment -->
     <a-entity environment="preset: forest; skyColor: #FFF"></a-entity>
