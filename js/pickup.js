@@ -30,12 +30,17 @@ window.onload = () => {
         var cloneObject = originalObject.cloneNode(true);
         cloneObject.setAttribute("position", {x: this.getAttribute('position').x, y:"1.14", z: this.getAttribute('position').z});
         cloneObject.setAttribute('id', "free");
-        if (placeholders[i].getAttribute('id') == "js--stove") {
-          cloneObject.dataset.state = cloneObject.dataset.state + "Stove";
+        if (placeholders[i].getAttribute('id') == "js--stove1") {
+          cloneObject.dataset.stove = "Stove1";
+        } else if (placeholders[i].getAttribute('id') == "js--stove2") {
+          cloneObject.dataset.stove = "Stove2";
+        } else if (placeholders[i].getAttribute('id') == "js--stove3") {
+          cloneObject.dataset.stove = "Stove3";
         } else if (placeholders[i].getAttribute('id') == "js--water") {
-          cloneObject.dataset.state = cloneObject.dataset.state + "Water";
+          cloneObject.dataset.water = "Water";
         }
-        console.log(cloneObject.dataset.state);
+        console.log(cloneObject.dataset.stove);
+        console.log(cloneObject.dataset.water);
         scene.appendChild(cloneObject);
         originalObject.parentNode.removeChild(originalObject);
         addListeners();
