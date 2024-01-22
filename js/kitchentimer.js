@@ -12,6 +12,7 @@ AFRAME.registerComponent('hourglass',
 
 var helpText;
 var panelText;
+var rotatingSound = new Audio("./assets/sound/pickup.mp3");
 
 var initTime;
 var startTime;
@@ -23,8 +24,6 @@ var potatoesTime;
 window.addEventListener("load", timerInit)
 
 function timerInit() {
-
-    // console.log("hello");
 
     helpText = document.getElementsByClassName('helpText');
     panelText = document.getElementsByClassName('panelText');
