@@ -2,6 +2,9 @@ window.onload = () => {
   const camera = document.getElementById('js--camera');
   const placeholders = document.getElementsByClassName('js--placeholder');
 
+  var pickupSound = new Audio("./assets/sound/pickup.mp3");
+  var putdownSound = new Audio("./assets/sound/putdown.mp3");
+
   let scene = document.getElementById('js--scene');
   let hold = null;
 
@@ -14,6 +17,7 @@ window.onload = () => {
           cloneObject.setAttribute('position', {x: ".5", y:"-0.5", z: "-1.5"});
           cloneObject.setAttribute('id', "js--hold")
           camera.appendChild(cloneObject);
+          pickupSound.play();
           hold = "box";
           this.remove();
         }
@@ -45,6 +49,7 @@ window.onload = () => {
         originalObject.parentNode.removeChild(originalObject);
         addListeners();
         hold = null;
+        putdownSound.play();
       }
     });
   }

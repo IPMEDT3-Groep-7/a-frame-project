@@ -12,6 +12,7 @@ AFRAME.registerComponent('hourglass',
 
 var helpText;
 var panelText;
+var rotatingSound = new Audio("./assets/sound/pickup.mp3");
 
 var initTime;
 var startTime;
@@ -24,17 +25,13 @@ window.addEventListener("load", timerInit)
 
 function timerInit() {
 
-    // console.log("hello");
-
     helpText = document.getElementsByClassName('helpText');
     panelText = document.getElementsByClassName('panelText');
 
-    potatoesTime = 1000 * 60 * 1;
+    potatoesTime = 1000 * 60 * 10;
 };
 
 function triggerTimer(timerObject) {
-
-    rotateHourglass(timerObject);
     
     if (timerPaused === undefined) {
         timerPaused = true;
@@ -44,6 +41,10 @@ function triggerTimer(timerObject) {
     }
 
     timerPaused = !timerPaused;
+
+    console.log(timerPaused);
+
+    rotateHourglass(timerObject);
 
     if (timerPaused) {
         lastPauseTime = new Date().getTime();
@@ -81,6 +82,7 @@ function kitchenTimer() {
 function alertFoodDone() {
 
     clearInterval(kitchenTimerInterval);
+    changeHelpText("Click again to\nrestart timer")
     blinkTimer(true);
     var audio = new Audio('./assets/sound/alarm.mp3');
     audio.play();
@@ -126,10 +128,10 @@ function blinkTimer(blinkOn) {
 
 function rotateHourglass(hourglass) {
 
-    if (timerPaused === undefined) {
-        helpText[0].setAttribute('text', 'value', "Click again\nto pause")
+    if (timerPaused == false) {
+        changeHelpText("Click again\nto pause")
     } else {
-        helpText[0].setAttribute('text', 'value', "Click to\nstart timer")
+        changeHelpText("Click hourglass\nto start timer")
     }
 
     let rotation = hourglass.getAttribute('rotation').x;
@@ -138,4 +140,16 @@ function rotateHourglass(hourglass) {
 
     let newAnimation = "property: rotation; to: " + rotation + " 0 0; loop: false; dur: 500; easing: linear"
     hourglass.setAttribute('animation', newAnimation);
-};
+}
+
+function changeHelpText(newText) {
+
+    let totalText = ""
+
+    for (let i = 0; i < newText.length; i++) {
+        setTimeout(() => {
+            totalText += newText[i];
+            helpText[0].setAttribute('text', 'value', totalText);
+        }, 10 * i);
+    }
+}
