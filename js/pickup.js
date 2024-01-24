@@ -1,6 +1,7 @@
 window.onload = () => {
   const camera = document.getElementById('js--camera');
   const placeholders = document.getElementsByClassName('js--placeholder');
+  const objectInfo = document.getElementById("js--objectInfo");
 
   var pickupSound = new Audio("./assets/sound/pickup.mp3");
   var putdownSound = new Audio("./assets/sound/putdown.mp3");
@@ -14,6 +15,11 @@ window.onload = () => {
       pickups[i].addEventListener('click', function(evt){
         if (hold == null) {
           let cloneObject = this.cloneNode(true);
+
+          
+          console.log(this.classList[1]);
+          setObjectInfo(this.classList[1]);
+
           cloneObject.setAttribute('position', {x: ".5", y:"-0.5", z: "-1.5"});
           cloneObject.setAttribute('id', "js--hold")
           camera.appendChild(cloneObject);
@@ -23,6 +29,34 @@ window.onload = () => {
         }
       });
     }
+  }
+
+  function setObjectInfo(info) {
+
+    objectInfo.setAttribute('text', 'value', info);
+    animateObjectInfo();
+  }
+
+  function animateObjectInfo() {
+
+    objectInfo.removeAttribute('animation__position');
+    objectInfo.removeAttribute('animation__fade');
+
+    objectInfo.setAttribute('animation__position', {
+      property: 'position',
+      from: "0 0.02 -0.5",
+      to: "0 0.03 -0.5",
+      dur: 1500,
+      easing: 'linear'
+    });
+
+    objectInfo.setAttribute('animation__fade', {
+      property: 'text.opacity',
+      from: "1",
+      to: "0",
+      dur: 1500,
+      easing: 'linear',
+    });
   }
 
   addListeners();
