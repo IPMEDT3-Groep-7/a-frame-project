@@ -46,29 +46,17 @@ window.onload = () => {
       property: 'position',
       from: "0 0.02 -0.5",
       to: "0 0.03 -0.5",
-      dur: 1000,
-      easing: 'easeOutQuad'
+      dur: 1500,
+      easing: 'linear'
     });
-
-    // optimize deze code twan!
 
     objectInfo.setAttribute('animation__fade', {
       property: 'text.opacity',
-      from: "0",
-      to: "1",
-      dur: 1000,
-      easing: 'easeInQuad',
+      from: "1",
+      to: "0",
+      dur: 1500,
+      easing: 'linear',
     });
-  
-    setTimeout(() => {
-      objectInfo.setAttribute('animation__fade', {
-        property: 'text.opacity',
-        from: "1",
-        to: "0",
-        dur: 1000,
-        easing: 'easeOutQuad',
-      });
-    }, 1000);
   }
 
   addListeners();
