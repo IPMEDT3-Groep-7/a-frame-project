@@ -15,6 +15,8 @@
   <script type="text/javascript" src="js/kitchentimer.js"></script>
   <script type="text/javascript" src="js/pickup.js"></script>
   <script type="text/javascript" src="js/cooking.js"></script>
+  <script type="text/javascript" src="js/instructions.js"></script>
+
 
   <title>Proof of concept | IPMEDT3</title>
 </head>
@@ -42,8 +44,6 @@
     <a-entity id="rig" position="0 0 0">
       <!-- Camera -->
       <a-camera id="js--camera" fov="50">
-        <!-- Panel (text) -->
-        <a-plane id="textPanel" position="4.49 2 -1.5" rotation="0 270 0" scale="2 1.5 1.5" color="#000000"></a-plane>
         <!-- Cursor -->
         <a-entity
           animation__click="property: scale; startEvents: click; easing: easeInCubic; dur: 150; from: 0.1 0.1 0.1; to: 1 1 1"
@@ -55,6 +55,15 @@
           position = "0 0 -0.5"
           raycaster = "objects: .js--interact"
         ></a-entity>
+
+        <!-- (ObjectInfo) -->
+        <a-entity
+          id="js--objectInfo"
+          position="0 0.02 -0.5"
+          text="align: center; anchor: center; color: black; value:; opacity: 1; "
+          scale="0.5 0.5 0.5"
+        ></a-entity>
+
       </a-camera>
       <!-- Hands -->
       <a-entity 
@@ -92,22 +101,30 @@
     <a-box position="3.5 .5 0" rotation="0 90 0" height="1" width="9"></a-box>
     <a-box position="3.5 1.05 0" rotation="0 90 0" height=".1" width="9" color="#ad7c00"></a-box>
 
+    <!-- (movement instructions) -->
+    <a-entity
+      class="js--movementInstructions"
+      position="0 0.5 -3"
+      text="align: center; anchor: center; color: black; value: Use WASD to move around.\nHover over an object to interact."
+      scale="2.5 2.5 2.5"
+    ></a-entity>
+
     <!-- Pots & pans (pickup) -->
-    <a-entity id="parentObject"  class="js--pickup" position="3.4 1.1 -4.1" rotation="0 135 0" data-stove="" data-water="" data-heat=""> 
+    <a-entity id="parentObject"  class="js--pickup sauce_pan" position="3.4 1.1 -4.1" rotation="0 135 0" data-stove="" data-water="" data-heat=""> 
       <a-obj-model class="js--interact" src="#sausPan-obj" mtl="#sausPan-mtl" scale="0.015 0.015 0.015"></a-obj-model>
     </a-entity>
-    <a-entity id="parentObject"  class="js--pickup" position="4 1.1 -4" rotation="0 45 0" data-stove="" data-water="" data-heat=""> 
+    <a-entity id="parentObject"  class="js--pickup big_pan" position="4 1.1 -4" rotation="0 45 0" data-stove="" data-water="" data-heat=""> 
       <a-obj-model class="js--interact" src="#bigPan-obj" mtl="#bigPan-mtl" scale="2.2 2.2 2.2"></a-obj-model>
     </a-entity>
-    <a-entity id="parentObject"  class="js--pickup" position="3 1.11 -3.5" data-stove="" data-water="" data-heat=""> 
+    <a-entity id="parentObject"  class="js--pickup baking_pan" position="3 1.11 -3.5" data-stove="" data-water="" data-heat=""> 
       <a-obj-model class="js--interact" src="#meatPan-obj" mtl="#meatPan-mtl" scale="2.2 2.2 2.2"></a-obj-model>
     </a-entity>
 
     <!-- Food (pickup) -->
-    <a-entity id="parentObject"  class="js--pickup" position="-1.7 1.13 -3.8" rotation="0 0 90"> 
+    <a-entity id="parentObject"  class="js--pickup bean" position="-1.7 1.13 -3.8" rotation="0 0 90"> 
       <a-obj-model class="js--interact" src="#bean-obj" mtl="#bean-mtl" scale="1 1 1"></a-obj-model>
     </a-entity>
-    <a-entity id="parentObject"  class="js--pickup" position="-2 1.15 -3.5" rotation="0 0 90"> 
+    <a-entity id="parentObject"  class="js--pickup potato" position="-2 1.15 -3.5" rotation="0 0 90"> 
       <a-obj-model class="js--interact" src="#potato-obj" mtl="#potato-mtl" scale="1 1 1"></a-obj-model>
     </a-entity>
 
