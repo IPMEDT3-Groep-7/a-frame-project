@@ -101,7 +101,16 @@
     <a-box position="3.5 .5 0" rotation="0 90 0" height="1" width="9"></a-box>
     <a-box position="3.5 1.05 0" rotation="0 90 0" height=".1" width="9" color="#ad7c00"></a-box>
 
-    <!-- (movement instructions) -->
+    <!-- Cooking instructions -->
+    <a-plane position="-2.5 2 -4.49" height="1.5" width="2.5" color="black">
+      <a-text id="js--instru1" position="-1.1 0.5 0.01" value="" align="left" width="3.5"></a-text>
+      <a-text id="js--instru2" position="-1.1 0 0.01" value="" align="left" width="3"></a-text>
+    </a-plane>
+    <a-plane position="2.5 2 -4.49" height="1.5" width="2.5" color="black">
+      <a-text id="js--instru3" position="-1.1 0 0.01" value="" align="left" width="3.3"></a-text>
+    </a-plane>
+
+    <!-- Movement instructions -->
     <a-entity
       class="js--movementInstructions"
       position="0 0.5 -3"
