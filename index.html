@@ -3,16 +3,213 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>A-frame VR Game | Groep 7</title>
   <script src="https://aframe.io/releases/1.5.0/aframe.min.js"></script>
+
+  <!-- A-frame environment -->
+  <script src="https://unpkg.com/aframe-environment-component@1.3.3/dist/aframe-environment-component.min.js"></script>
+
+  <!-- A-frame smoothlocomotion -->
+  <script src="https://unpkg.com/aframe-locomotion@0.2.0/dist/aframe-locomotion.umd.min.js"></script>
+
+  <!-- <script type="text/javascript" src="js/main.js"></script> -->
+  <script type="text/javascript" src="js/kitchentimer.js"></script>
+  <script type="text/javascript" src="js/pickup.js"></script>
+  <script type="text/javascript" src="js/cooking.js"></script>
+  <script type="text/javascript" src="js/instructions.js"></script>
+
+
+  <title>Proof of concept | IPMEDT3</title>
 </head>
 <body>
-  <a-scene>
-    <a-box position="-1 0.5 -3" rotation="0 45 0" color="#4CC3D9"></a-box>
-    <a-sphere position="0 1.25 -5" radius="1.25" color="#EF2D5E"></a-sphere>
-    <a-cylinder position="1 0.75 -3" radius="0.5" height="1.5" color="#FFC65D"></a-cylinder>
-    <a-plane position="0 0 -4" rotation="-90 0 0" width="8" height="4" color="#7BC8A4"></a-plane>
-    <a-sky color="#70dbff"></a-sky>
+  <a-scene id="js--scene">
+    <!-- Assets -->
+    <a-assets>
+      <a-asset-item id="sausPan-obj" src="assets/models/Saus-Pan.obj"></a-asset-item>
+      <a-asset-item id="sausPan-mtl" src="assets/models/Saus-Pan.mtl"></a-asset-item>
+      <a-asset-item id="bigPan-obj" src="assets/models/bigPan.obj"></a-asset-item>
+      <a-asset-item id="bigPan-mtl" src="assets/models/bigPan.mtl"></a-asset-item>
+      <a-asset-item id="bigWaterPan-obj" src="assets/models/bigWaterPan.obj"></a-asset-item>
+      <a-asset-item id="bigWaterPan-mtl" src="assets/models/bigWaterPan.mtl"></a-asset-item>
+      <a-asset-item id="meatPan-obj" src="assets/models/meatPan.obj"></a-asset-item>
+      <a-asset-item id="meatPan-mtl" src="assets/models/meatPan.mtl"></a-asset-item>
+      <a-asset-item id="bean-obj" src="assets/models/bean.obj"></a-asset-item>
+      <a-asset-item id="bean-mtl" src="assets/models/bean.mtl"></a-asset-item>
+      <a-asset-item id="potato-obj" src="assets/models/potato.obj"></a-asset-item>
+      <a-asset-item id="potato-mtl" src="assets/models/potato.mtl"></a-asset-item>
+      <a-asset-item id="tap2-obj" src="assets/models/tap2.obj"></a-asset-item>
+      <a-asset-item id="tap2-mtl" src="assets/models/tap2.mtl"></a-asset-item>
+    </a-assets>
+
+    <!-- Camera rig -->
+    <a-entity id="rig" position="0 1.6 0">
+      <!-- Camera -->
+      <a-camera id="js--camera" fov="50">
+        <!-- Cursor -->
+        <a-entity
+          animation__click="property: scale; startEvents: click; easing: easeInCubic; dur: 150; from: 0.1 0.1 0.1; to: 1 1 1"
+          animation__fusing="property: scale; startEvents: fusing; easing: easeInCubic; dur: 1500; from: 1 1 1; to: 0.1 0.1 0.1"
+          animation="property: scale; startEvents: mouseleave; easing: easeInCubic; dur: 500; to: 1 1 1"
+          cursor = "fuse: true; fuseTimeout: 2000"
+          material = "color: white; shader: flat"
+          geometry = "primitive: ring; radiusInner: 0.003; radiusOuter: 0.005"
+          position = "0 0 -0.5"
+          raycaster = "objects: .js--interact"
+        ></a-entity>
+
+        <!-- (ObjectInfo) -->
+        <a-entity
+          id="js--objectInfo"
+          position="0 0.02 -0.5"
+          text="align: center; anchor: center; color: black; value:; opacity: 1; "
+          scale="0.5 0.5 0.5"
+        ></a-entity>
+
+      </a-camera>
+      <!-- Hands -->
+      <a-entity 
+        hand-controls="hand: left"
+        smooth-locomotion="target: #rig; reference: #js--camera">
+      </a-entity>
+      <a-entity 
+        hand-controls="hand: right"
+        snap-turn="target: #rig; reference: #js--camera">
+      </a-entity>
+    </a-entity>
+
+    <!-- Room -->
+    <!-- (walls) -->
+    <a-plane position="0 1.5 -4.5" rotation="0 0 0" height="3" width="3"></a-plane>
+    <a-plane position="4 1.5 -4.5" rotation="0 0 0" height="3" width="1.5"></a-plane>
+    <a-plane position="-4 1.5 -4.5" rotation="0 0 0" height="3" width="1.5"></a-plane>
+    <a-plane position="-2.5 .5 -4.5" rotation="0 0 0" height="1.5" width="2"></a-plane>
+    <a-plane position="2.5 .5 -4.5" rotation="0 0 0" height="1.5" width="2"></a-plane>
+    <a-plane position="2.5 2.75 -4.5" rotation="0 0 0" height=".5" width="2"></a-plane>
+    <a-plane position="-2.5 2.75 -4.5" rotation="0 0 0" height=".5" width="2"></a-plane>
+    <a-plane position="-4.5 1.5 0" rotation="0 90 0" height="3" width="9"></a-plane>
+    <a-plane position="4.5 1.5 0" rotation="0 -90 0" height="3" width="9"></a-plane>
+    <a-plane position="0 1.5 4.5" rotation="0 180 0" height="3" width="9"></a-plane>
+    <!-- (floor/roof) -->
+    <a-plane position="0 3 0" rotation="90 0 0" height="9" width="9" src="assets/images/roof.png"></a-plane>
+    <a-plane position="0 .01 0" rotation="-90 0 0" height="9" width="9" src="assets/images/floor.png"></a-plane>
+    <!-- (kitchen counter) -->
+    <a-box position="0 .5 -4" height="1" width="9"></a-box>
+    <a-box position="0 1.05 -4" height=".1" width="9" color="#ad7c00"></a-box>
+    <a-box position="0 .5 -3.5" height="1" width="9"></a-box>
+    <a-box position="0 1.05 -3.5" height=".1" width="9" color="#ad7c00"></a-box>
+    <a-box position="4 .5 0" rotation="0 90 0" height="1" width="9"></a-box>
+    <a-box position="4 1.05 0" rotation="0 90 0" height=".1" width="9" color="#ad7c00"></a-box>
+    <a-box position="3.5 .5 0" rotation="0 90 0" height="1" width="9"></a-box>
+    <a-box position="3.5 1.05 0" rotation="0 90 0" height=".1" width="9" color="#ad7c00"></a-box>
+
+    <!-- Cooking instructions -->
+    <a-plane position="-2.5 2 -4.49" height="1.5" width="2.5" color="black">
+      <a-text id="js--instru1" position="-1.1 0.5 0.01" value="" align="left" width="3.5"></a-text>
+      <a-text id="js--instru2" position="-1.1 0 0.01" value="" align="left" width="3"></a-text>
+    </a-plane>
+    <a-plane position="2.5 2 -4.49" height="1.5" width="2.5" color="black">
+      <a-text id="js--instru3" position="-1.1 0 0.01" value="" align="left" width="3.3"></a-text>
+    </a-plane>
+
+    <!-- Movement instructions -->
+    <a-entity
+      class="js--movementInstructions"
+      position="0 0.5 -3"
+      text="align: center; anchor: center; color: black; value: Use WASD to move around.\nHover over an object to interact."
+      scale="2.5 2.5 2.5"
+    ></a-entity>
+
+    <!-- Pots & pans (pickup) -->
+    <a-entity id="parentObject"  class="js--pickup sauce_pan" position="3.4 1.1 -4.1" rotation="0 135 0" data-stove="" data-water="" data-heat=""> 
+      <a-obj-model class="js--interact" src="#sausPan-obj" mtl="#sausPan-mtl" scale="0.015 0.015 0.015"></a-obj-model>
+    </a-entity>
+    <a-entity id="parentObject"  class="js--pickup big_pan" position="4 1.1 -4" rotation="0 45 0" data-stove="" data-water="" data-heat=""> 
+      <a-obj-model class="js--interact" src="#bigPan-obj" mtl="#bigPan-mtl" scale="2.2 2.2 2.2"></a-obj-model>
+    </a-entity>
+    <a-entity id="parentObject"  class="js--pickup baking_pan" position="3 1.11 -3.5" data-stove="" data-water="" data-heat=""> 
+      <a-obj-model class="js--interact" src="#meatPan-obj" mtl="#meatPan-mtl" scale="2.2 2.2 2.2"></a-obj-model>
+    </a-entity>
+
+    <!-- Food (pickup) -->
+    <a-entity id="parentObject"  class="js--pickup bean" position="-1.7 1.13 -3.8" rotation="0 0 90"> 
+      <a-obj-model class="js--interact" src="#bean-obj" mtl="#bean-mtl" scale="1 1 1"></a-obj-model>
+    </a-entity>
+    <a-entity id="parentObject"  class="js--pickup potato" position="-2 1.15 -3.5" rotation="0 0 90"> 
+      <a-obj-model class="js--interact" src="#potato-obj" mtl="#potato-mtl" scale="1 1 1"></a-obj-model>
+    </a-entity>
+
+    <!-- Timer -->
+    <a-entity id="timerPanel" position="0 2 -4.49">
+      <a-plane position="0 0.1 0" shader="flat" color="#000000" width="1.5" height="0.5"></a-plane>
+      <a-entity id="" position="-.6 0.19 0">
+          <a-entity
+              class="panelText"
+              text="align: left; anchor: left; color: white; value: Kitchen timer: Potatoes;"
+              scale="2.5 2.5 2.5"
+          ></a-entity>
+          <a-entity
+              class="panelText"
+              text="align: left; anchor: left; color: white; value:)));"
+              scale="1.7 1.7 1.7"
+              position="0 -0.1 0"
+          ></a-entity>
+          <a-entity
+              class="panelText"
+              line="start: 0.1 -0.1 0.001; end: 0.1 -0.1 0.001; color: rgb(255, 255, 0);"
+          ></a-entity>
+          <a-entity
+              class="panelText"
+              text="align: left; anchor: left; color: white; value: Potatoes ready in --:--;"
+              scale="1.7 1.7 1.7"
+              position="0 -0.2 0"
+          ></a-entity>
+      </a-entity>
+    </a-entity>
+
+    <!-- Hourglass text -->
+    <a-entity class="helpText"
+      text="color: white; value: Click hourglass\nto start timer; align: center; anchor: center;"
+      scale="4 4 4"
+      position="-4.49 2 -3.4"
+      rotation="0 90 0"
+    ></a-entity>
+
+    <!-- Hourglass entity -->
+    <a-entity hourGlass position="-3.6 1.64 -3.8"s>
+      <a-cylinder src="./assets/models/wood.jpg" height="1" position="-0.25 0 0" radius="0.05" ></a-cylinder>
+      <a-cylinder src="./assets/models/wood.jpg" height="1" position="0.25 0 0" radius="0.05" ></a-cylinder>
+
+      <a-cylinder src="./assets/models/wood.jpg" height="0.05" position="0 0.5 0" radius="0.3" ></a-cylinder>
+      <a-cone class="js--interact" color="#a7c7cb" height="0.5" position="0 0.25 0" radius-top="0.01" radius-bottom="0.2" rotation="0 0 180" ></a-cone>
+      <a-cone class="js--interact" src="./assets/models/sand.jpg" height="0.5" position="0 -0.25 0" radius-bottom="0.2" radius-top="0.01" ></a-cone>
+      <a-cylinder src="./assets/models/wood.jpg" height="0.05" position="0 -0.5 0" radius="0.3" ></a-cylinder>
+    </a-entity>
+    
+    <!-- Furnace -->
+    <a-box position="0 1.11 -4" height=".02" width="2" color="#adadad"></a-box>
+    <a-box position="0 1.11 -3.5" height=".02" width="2" color="#adadad"></a-box>
+    <a-box position="0 1.06 -3.47" height=".12" width="2" color="#adadad"></a-box>
+    <!-- Furnace buttons -->
+    <a-cylinder id="js--heat1" class="js--heat js--interact" position=".5 1.06 -2.99" rotation="90 0 0" height=".1" radius=".04" color="#000"></a-cylinder>
+    <a-cylinder id="js--heat2" class="js--heat js--interact" position="-.5 1.06 -2.99" rotation="90 0 0" height=".1" radius=".04" color="#000"></a-cylinder>
+    <a-cylinder id="js--heat3" class="js--heat js--interact" position="0 1.06 -2.99" rotation="90 0 0" height=".1" radius=".04" color="#000"></a-cylinder>
+    <!-- Furnace pits -->
+    <a-cylinder id="js--stove1" class="js--stove js--placeholder js--interact" position=".5 1.12 -3.4" height=".01" radius=".35" color="grey"></a-cylinder>
+    <a-cylinder id="js--stove2" class="js--stove js--placeholder js--interact" position="-.5 1.12 -3.4" height=".01" radius=".35" color="grey"></a-cylinder>
+    <a-cylinder id="js--stove3" class="js--stove js--placeholder js--interact" position="0 1.12 -4" height=".01" radius=".35" color="grey"></a-cylinder>
+
+     <!-- Water tap -->
+    <a-entity id="parentObject"> 
+      <a-obj-model class="js--interact" src="#tap2-obj" mtl="#tap2-mtl" position="4.322 1.12 -0.75" rotation="0 270 0" scale="0.2 0.2 0.2"></a-obj-model>
+    </a-entity>
+
+    <!-- Faucet -->
+    <a-box position="4 1.11 -1" rotation="0 90 0" height=".02" width="1.5" color="#adadad"></a-box>
+    <a-box position="3.6 1.11 -1" rotation="0 90 0" height=".02" width="1.5" color="#adadad"></a-box>
+    <a-box position="3.7 1.111 -1" rotation="0 90 0" height=".02" width="1.4" color="#3acdff"></a-box>
+    <a-cylinder id="js--water" class="js--placeholder js--interact" position="3.7 1.12 -1" height=".01" radius=".35" color="#00bfff"></a-cylinder>
+
+    <!-- Environment -->
+    <a-entity environment="preset: forest; skyColor: #FFF"></a-entity>
   </a-scene>
 </body>
 </html>
