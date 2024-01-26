@@ -41,7 +41,7 @@
     </a-assets>
 
     <!-- Camera rig -->
-    <a-entity id="rig" position="0 1.6 0">
+    <a-entity id="rig" position="0 0 0">
       <!-- Camera -->
       <a-camera id="js--camera" fov="50">
         <!-- Cursor -->
@@ -103,18 +103,18 @@
 
     <!-- Cooking instructions -->
     <a-plane position="-2.5 2 -4.49" height="1.5" width="2.5" color="black">
-      <a-text id="js--instru1" position="-1.1 0.5 0.01" value="" align="left" width="3.5"></a-text>
-      <a-text id="js--instru2" position="-1.1 0 0.01" value="" align="left" width="3"></a-text>
+      <a-text id="js--instru1" position="-1.1 0.5 0.01" value="Gerecht: A.V.G." align="left" width="3.5"></a-text>
+      <a-text id="js--instru2" position="-1.1 0 0.01" value="Ingredienten:\n- Aardappelen\n- Snijbonen\n- Worstjes" align="left" width="3"></a-text>
     </a-plane>
     <a-plane position="2.5 2 -4.49" height="1.5" width="2.5" color="black">
-      <a-text id="js--instru3" position="-1.1 0 0.01" value="" align="left" width="3.3"></a-text>
+      <a-text id="js--instru3" position="-1.1 0 0.01" value="Stappen:\n- Aardappels schoonmaken\n- Snijbonen schoonmaken\n- Aardappels & snijbonen snijden\n- Aardappels & snijbonen koken\n- Worstjes bakken" align="left" width="3.3"></a-text>
     </a-plane>
 
     <!-- Movement instructions -->
     <a-entity
       class="js--movementInstructions"
       position="0 0.5 -3"
-      text="align: center; anchor: center; color: black; value: Use WASD to move around.\nHover over an object to interact."
+      text="align: center; anchor: center; color: black; value: Use WASD or your left VR controller to move around.\nHover over an object to interact."
       scale="2.5 2.5 2.5"
     ></a-entity>
 
